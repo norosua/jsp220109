@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import addr.Addr;
-import board.Article;
 import board.member.Member;
 
 public class MemberDBUtil {

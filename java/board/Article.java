@@ -4,17 +4,33 @@ public class Article {
 	
 	private int no;
 	private String title;
+	private int memberIdx;	
 	private String writer;
 	private String body;
 	private String regDate;
 	
-	public Article(int no, String title, String writer, String body, String regDate) {
+	public Article(int no, String title, int memberIdx, String writer, String body, String regDate) {
 		this.no = no;
 		this.title = title;
+		this.memberIdx = memberIdx;
 		this.writer = writer;
 		this.body = body;
 		this.regDate = regDate;
 	}
+	
+	public Article(int no, String title, String body, int memberIdx) {
+		this.no = no;
+		this.title = title;
+		this.memberIdx = memberIdx;
+		this.body = body;
+	}
+	
+	public Article(String title, String body, int memberIdx) {
+		this.title = title;
+		this.body = body;
+		this.memberIdx = memberIdx;
+	}
+	
 	//접근제어자가 없으면 다른 폴더에서는 사용할 수 없다.
 
 	public int getNo() {
@@ -33,6 +49,13 @@ public class Article {
 		this.title = title;
 	}
 
+	public int getMemberIdx() {
+		return memberIdx;
+	}
+
+	public void setMemberIdx(int memberIdx) {
+		this.memberIdx = memberIdx;
+	}
 
 	public String getWriter() {
 		return writer;

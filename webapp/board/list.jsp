@@ -13,22 +13,20 @@
 </head>
 <body>
  
- <%
-	SqlMapper mapper = new SqlMapper();
- 	ArrayList<Article> articles = mapper.getArticleList();
- %>
+
  
  <h1>게시물 목록</h1>
  
- <% for(int i = 0; i < articles.size(); i++) { %>
- 	<div>
- 		번호 : <%= articles.get(i).getNo() %>
- 		제목 : <%= articles.get(i).getTitle() %>
- 		작성자 : <%= articles.get(i).getWriter() %>
- 		작성일 : <%= articles.get(i).getRegDate() %>
+<c:forEach items="${ articles }" var="a">
+	<div>
+ 		번호 : ${ a.no }
+ 		<a href="/article?action=detail&idx=${ a.no }"> 제목 : ${ a.title } </a>
+ 		작성자 : ${ a.writer }
+ 		작성일 : ${ a.regDate }
  	</div>
- 	<hr>
- <% } %>
+</c:forEach>
+ 
+<a href="/article?action=add">글쓰기</a>
  
 </body>
 </html>

@@ -138,7 +138,7 @@ public class App {
 	}
 
 	private void login() {
-		boolean isSuccessLogin = false;
+//		boolean isSuccessLogin = false;
 
 		System.out.print("아이디 : ");
 		String loginId = sc.nextLine();
@@ -412,7 +412,7 @@ public class App {
 			System.out.print("새내용 : ");
 			String body = sc.nextLine();
 
-			Article a = new Article(id, title, null, body, null);
+			Article a = new Article(id, title, 0, null, body, null);
 			mapper.updateArticle(a);
 			System.out.println("게시물이 수정되었습니다.");
 		} else {
@@ -469,7 +469,7 @@ public class App {
 		// 현재 시간 구해서 등록.
 		// 현재 날짜 구하기 (시스템 시계, 시스템 타임존)
 		String regDate = getCurrentData();
-		Article a = new Article(articleNo, title, loginedUser.getNickname(), body, regDate);
+		Article a = new Article(articleNo, title, loginedUser.getIdx(),loginedUser.getNickname(), body, regDate);
 		
 		
 		
@@ -509,7 +509,6 @@ public class App {
 
 	public void setMemberTestData(String loginId, String loginPw, String nick) {
 
-		String regDate = getCurrentData();
 		Member m1 = new Member(loginId, loginPw, nick);
 
 		members.add(m1);
@@ -519,7 +518,7 @@ public class App {
 	public void setArticleTestData(String title, String body) {
 
 		String regDate = getCurrentData();
-		Article a = new Article(articleNo, title, "홍길동", body, regDate);
+		Article a = new Article(articleNo, title, loginedUser.getIdx() , "홍길동", body, regDate);
 
 		articles.add(a);
 		System.out.println("게시물이 등록되었습니다.");

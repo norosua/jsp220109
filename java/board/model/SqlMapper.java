@@ -25,9 +25,12 @@ public class SqlMapper {
 	
 	public ArrayList<Article> getArticleList() {
 		String sql = """
-				SELECT *
-				FROM article
+				SELECT a.*, m.nickname
+				FROM article a
+				INNER JOIN `member` m
+				ON a.memberidx = m.idx
 				""";
+		
 		ArrayList<Article> articleList = articleDB.getDataList(sql);
 		return articleList;
 	}
@@ -35,9 +38,11 @@ public class SqlMapper {
 	public Article getArticleById(int id) {
 		String sql = """
 				
-				SELECT *
-				FROM article
-				WHERE idx = %d
+				SELECT a.*, m.nickname
+				FROM article a
+				INNER JOIN `member` m
+				ON a.memberidx = m.idx
+				WHERE a.idx = %d
 				
 				""";
 		
@@ -66,12 +71,12 @@ public class SqlMapper {
 				INSERT INTO article
 				SET title = '%s',
 				`body` = '%s',
-				nickname = '%s',
+				memberidx = %d,
 				regDate = NOW()
 				
 				""";
 		
-		sql = String.format(sql, a.getTitle(), a.getBody(), a.getWriter());
+		sql = String.format(sql, a.getTitle(), a.getBody(), a.getMemberIdx());
 		articleDB.updateData(sql);
 		
 	}

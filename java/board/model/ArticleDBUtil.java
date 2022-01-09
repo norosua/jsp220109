@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import addr.Addr;
 import board.Article;
 
 public class ArticleDBUtil {
@@ -57,11 +56,12 @@ public class ArticleDBUtil {
 				
 				int idx = rs.getInt("idx");
 				String title = rs.getString("title");
+				int memberidx = rs.getInt("memberidx");
 				String writer = rs.getString("nickname");
 				String body = rs.getString("body");
 				String regDate = rs.getString("regDate");
 				
-				Article a = new Article(idx, title, body, writer, regDate);				
+				Article a = new Article(idx, title, memberidx, writer, body, regDate);				
 				articleList.add(a);
 			}
 			close(conn, stmt, rs);
